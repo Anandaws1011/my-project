@@ -10,19 +10,20 @@ node{
    stage('Deploy to Tomcat'){
       
       sshagent(['tomcat-dev']) {
-         sh 'scp -o StrictHostKeyChecking=no target/*.war ec2-user@172.31.29.242:/opt/tomcat8/webapps/'
+         sh 'scp -o StrictHostKeyChecking=no target/*.war ec2-user@3.110.37.233:/opt/tomcat8/webapps/'
       }
    }
    stage('Email Notification'){
       mail bcc: '', body: '''Hi Welcome to jenkins email alerts
       Thanks
-      Hari''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'hari.kammana@gmail.com'
+      Hari''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'anandaws1011@gmail.com'
    }
    stage('Slack Notification'){
        slackSend baseUrl: 'https://hooks.slack.com/services/',
        channel: '#jenkins-pipeline-demo',
        color: 'good', 
-       message: 'Welcome to Jenkins, Slack!', 
+       message: 'Hello Mr.Vivek Thank you for the dynamic training 
+                  Task completed ! Kindly share me the HR Contact details and Interview Questions, Slack!', 
        teamDomain: 'javahomecloud',
        tokenCredentialId: 'slack-demo'
    }
